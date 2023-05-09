@@ -1,7 +1,7 @@
 # LinkedList class, which will represent the full list.
 class LinkedList
 
-  def initialise(data = nil)
+  def initialize(data = nil)
     node = Node.new(data)
   end
 
@@ -9,7 +9,7 @@ class LinkedList
   def append(value)
     append_node = Node.new(value)
     current_node = node
-    begin until current_node.next_node == nil
+    until current_node.next_node == nil do
       current_node = current_node.next_node
     end
     current_node.next_node = append_node
@@ -28,7 +28,7 @@ class LinkedList
   def size
    count = 1
    current_node = node
-   begin until current_node.next_node == nil
+   until current_node.next_node == nil do
     count +=1
     current_node = current_node.next_node
    end
@@ -44,22 +44,20 @@ class LinkedList
   def tail
 
     last_node = node
-    self.size.times do
-      last_node = last_node.new_node
-    end
+    # self.size.times do
+    #   last_node = last_node.new_node
+    # end
 
     last_node.data
   end
 
 #at(index) returns the node at the given index
-
 end
-
 
 
 class Node
   attr_accessor :data, :next_node
-  def initialise(data = nil, next_node = nil)
+  def initialize(data = nil, next_node = nil)
     @data = data
     @next_node = next_node
   end
