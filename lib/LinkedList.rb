@@ -107,14 +107,64 @@ class LinkedList
       print "#{print_node.data} "
       print_node = print_node.next_node
     end
+    print "\n"
   end
 
 
 # Extra Credit
 #insert_at(value, index) that inserts a new node with the provided value at the given index.
+  def insert_at(value, index)
 
+    at_index = 0
+
+    copy_node = @node
+    old_node = copy_node
+    insert_node = Node.new(value)
+    self.size.times do
+      at_index+=1
+      half_node_copy = old_node.next_node
+      old_node.next_node = insert_node if at_index == index
+      old_node.next_node.next_node = half_node_copy if at_index == index
+
+      old_node = old_node.next_node
+      return if at_index == index
+
+    end
+
+    @node = old_node
+  end
+
+
+#remove_at(index) that removes the node at the given index.
+def remove_at(index)
+
+  at_index = 0
+
+  if index > self.size
+    return p "Index not found."
+  end
+
+  @node = @node.next_node if at_index == index
+  return if at_index == index
+
+
+  copy_node = @node
+  old_node = copy_node
+
+  self.size.times do
+    at_index+=1
+
+    left_node_copy = old_node.next_node.next_node
+    old_node.next_node = left_node_copy if at_index == index
+
+    old_node = old_node.next_node
+    return if at_index == index
+
+  end
+
+  @node = old_node
 end
-
+end
 
 class Node
   attr_accessor :data, :next_node
@@ -125,27 +175,14 @@ class Node
 
 end
 
-test_list = LinkedList.new(2)
-test_list.append(3)
-test_list.prepend(1)
+test_list = LinkedList.new(3)
 test_list.append(4)
-test_list.prepend(0)
+test_list.prepend(2)
 test_list.append(5)
 
+test_list.append(6)
 
+test_list.insert_at(1, 4)
+test_list.remove_at(8)
 test_list.to_s
-
-
-
-# Node class, containing a #value method and a link to the #next_node, set both as nil by default.
-# Build the following methods in your linked list class:
-
-
-
-
-
-
-
-
-#remove_at(index) that removes the node at the given index.
-# Extra Credit Tip: When you insert or remove a node, consider how it will affect the existing nodes. Some of the nodes will need their #next_node link updated.
+puts test_list.find(1)
