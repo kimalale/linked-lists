@@ -2,8 +2,8 @@
 
 Understanding Linked Lists
 
-# Assignment
-    Implement a link lists in ruby with the following methods.
+## Assignment
+Implement a link lists in ruby with the following methods.
 
 ## Build the following methods in your linked list class:
 
